@@ -45,36 +45,37 @@ int main() {
             H[i].idx = i;
                         
         }
+        
+        H[N+1].val = -7;
 
         
-        stable_sort(H, H + N+1,acompare);
+        stable_sort(H+1, H + N+1,acompare);
 
         //f(i, 0, N+1) {
          // cout << H[i].val <<".." <<H[i].idx <<"\n";        }
         
-    ll p=0;
-    ll i=0;
-    ll j=1;
-        while(i<N){
-            p=0;
-            while(H[i].val== H[j].val) {
-                p++;
-                j++;
 
-            }               
-                    
-               
-                    res=res-(p*(p+1))/2;
-                    for(long long int k=j-1;k>=i;k--){
-                        res=res+p*(H[k].idx);
-                        
-                    p=p-2;
+        f(i,0,N+1) {
+            if(H[i].val== H[i+1].val) {
+                end= i+1;
+
+
+            } else {
+                len = end - start +1;
+                    if(len >=2) {
+                        f(j, start, end+1) { 
+                                
+                                res = res + (2*(j-start) - len +1)*(H[j].idx) ; 
+                                   
+                            
+
                     }
-                    
- 
-            i=j;
-            
-           j++;            
+                    res = res - (len * (len -1))/2;
+                }
+
+                start = i+1; end = start;
+            }
+                        
         }
 
         
